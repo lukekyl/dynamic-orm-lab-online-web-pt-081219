@@ -55,12 +55,11 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    binding.pry
-    if attribute.is_a? Integer
-      attribute.to_s
-    end
+    #binding.pry
+    attribute_key = attribute.keys
+    attribute_value = attribute.value
     column_names.each do |name|
-      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{name} = ?", attribute)
+      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute.keys} = ?", attribute.value)
     end
   end
 end
