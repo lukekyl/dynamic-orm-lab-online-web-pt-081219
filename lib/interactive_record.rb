@@ -1,5 +1,6 @@
 require_relative "../config/environment.rb"
 require 'active_support/inflector'
+require 'pry'
 
 class InteractiveRecord
 
@@ -54,6 +55,7 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
+    binding.pry
     if attribute.is_a? Integer
       attribute.to_s
     end
