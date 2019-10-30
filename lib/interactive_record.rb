@@ -54,8 +54,8 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    if attribute.is_integer
-      attribute.to_s 
+    if attribute.is_a? Integer
+      attribute.to_s
     end
     column_names.each do |name|
       DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{name} = ?", attribute)
