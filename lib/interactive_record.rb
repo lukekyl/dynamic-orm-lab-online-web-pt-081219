@@ -54,7 +54,7 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    column = column_names.delete_if {|col| col == "id"}.map do |name|
+    column = column_names.map do |name|
       DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{name}").include?(attribute)
     end
     sql = "SELECT * FROM #{self.table_name} WHERE #{column} = ?"
