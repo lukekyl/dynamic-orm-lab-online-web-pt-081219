@@ -59,7 +59,7 @@ class InteractiveRecord
     # attribute_key = attribute.keys
     # attribute_value = attribute.value
     column_names.each do |name|
-      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first.to_s} = ?", attribute.values.first_to_s)
+      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{attribute.keys.first.to_s} = ?", attribute.values.first.to_s)
     end
   end
 end
