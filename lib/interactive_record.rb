@@ -54,8 +54,11 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    column = column_names.map do |name|
-      DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{name}").include?(attribute)
+    column = ""
+    column_names.each do |name|
+      if DB[:conn].execute("SELECT * FROM #{self.table_name} WHERE #{name}").include?(attribute)
+        column = name
+      end
     end
     sql = "SELECT * FROM #{self.table_name} WHERE #{column} = ?"
     DB[:conn].execute(sql, attribute)
